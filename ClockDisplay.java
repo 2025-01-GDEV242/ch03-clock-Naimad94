@@ -59,6 +59,13 @@ public class ClockDisplay
             hours.increment();
         }
         updateDisplay();
+        
+        //If hours is equal to "00" add 1.
+        if(hours.getValue() == 0)
+        {
+            hours.increment();
+        }
+        updateDisplay();
     }
 
     /**
