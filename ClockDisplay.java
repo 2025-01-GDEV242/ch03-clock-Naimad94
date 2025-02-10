@@ -52,10 +52,16 @@ public class ClockDisplay
      */
     public void timeTick()
     {
-        minutes.increment();
-        if(minutes.getValue() == 0) {  // it just rolled over!
+        minutes.increment(); //minutes + 1
+        if(minutes.getValue() == 0) //If minutes Value is equal to "00" add hour.
+        {  // it just rolled over!
             hours.increment();
         }
+        
+        //if hours is >= 12 meridian equals to "PM".
+        //else meridian is "AM".
+        
+        //if hour is equal to 13 or more then subtract hours by 12.
         updateDisplay();
     }
 
@@ -83,7 +89,6 @@ public class ClockDisplay
      */
     private void updateDisplay()
     {
-        displayString = hours.getDisplayValue() + ":" + 
-                        minutes.getDisplayValue();
+        displayString = hours.getDisplayValue() + ":" + minutes.getDisplayValue();
     }
 }
