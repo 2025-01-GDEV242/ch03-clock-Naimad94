@@ -23,6 +23,7 @@ public class ClockDisplay
     private NumberDisplay hours;
     private NumberDisplay minutes;
     private String displayString;    // simulates the actual display
+    private boolean isMorning; //turned the meridian into a boolean.
     
     /**
      * Constructor for ClockDisplay objects. This constructor 
@@ -32,6 +33,7 @@ public class ClockDisplay
     {
         hours = new NumberDisplay(13); //Since it's a 12 hour internal i changed the limit to 13 hours.
         minutes = new NumberDisplay(60);
+        isMorning = true; //isMorning is set to true.
         updateDisplay();
     }
 
@@ -40,10 +42,13 @@ public class ClockDisplay
      * creates a new clock set at the time specified by the 
      * parameters.
      */
-    public ClockDisplay(int hour, int minute)
+    
+    //added boolean isAM to the parameter of the constructor.
+    public ClockDisplay(int hour, int minute, boolean isAM)
     {
         hours = new NumberDisplay(13); //Just like in the first constructor i chnaged the limit to 13 hours.
         minutes = new NumberDisplay(60);
+        isAM = true; //Set isAM to true.
         setTime(hour, minute);
     }
 
