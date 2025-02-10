@@ -1,6 +1,6 @@
 
 /**
- * 24 hour INTERNAL BRANCH
+ * 24 HOUR INTERNAL BRANCH
  * 
  * The ClockDisplay class implements a digital clock display for a
  * US-style 24 hour clock. The clock shows hours and minutes. The 
