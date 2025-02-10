@@ -1,9 +1,14 @@
 
 /**
+ * 
+ * 12 HOUR INTERNAL
  * The ClockDisplay class implements a digital clock display for a
  * European-style 24 hour clock. The clock shows hours and minutes. The 
- * range of the clock is 00:00 (midnight) to 23:59 (one minute before 
+ * range of the clock is 12:00 AM (midnight) to 11:59 PM (one minute before 
  * midnight).
+ * 
+ * This version requires program to maintain an internal variable to indicate if
+ * it is an ante-meridian or post meridian (AM-PM).
  * 
  * The clock display receives "ticks" (via the timeTick method) every minute
  * and reacts by incrementing the display. This is done in the usual clock
