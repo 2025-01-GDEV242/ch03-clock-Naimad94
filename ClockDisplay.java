@@ -54,6 +54,9 @@ public class ClockDisplay
     {
         minutes.increment(); //minutes + 1
         if(minutes.getValue() == 0) //If minutes Value is equal to "00" add hour.
+        minutes.increment();
+        if(minutes.getValue() == 0) 
+        
         {  // it just rolled over!
             hours.increment();
         }
