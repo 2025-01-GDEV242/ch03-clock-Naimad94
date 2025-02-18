@@ -54,17 +54,9 @@ public class ClockDisplay
     {
         minutes.increment(); //minutes + 1
         if(minutes.getValue() == 0) //If minutes Value is equal to "00" add hour.
-        minutes.increment();
-        if(minutes.getValue() == 0) 
-        
-        {  // it just rolled over!
-            hours.increment();
+        {
+            hours.increment(); // it just rolled over!
         }
-        
-        //if hours is >= 12 meridian equals to "PM".
-        //else meridian is "AM".
-        
-        //if hour is equal to 13 or more then subtract hours by 12.
         updateDisplay();
     }
 
@@ -92,6 +84,30 @@ public class ClockDisplay
      */
     private void updateDisplay()
     {
-        displayString = hours.getDisplayValue() + ":" + minutes.getDisplayValue();
+        int hour = hours.getValue(); //local variable of hour.
+        String meridian; //local variable of meridian.
+        
+        if(hour >= 12) //if hour is greater then or equal to 12
+        {
+            meridian = "PM"; //set meridian to "PM"
+        }
+        else
+        {
+           meridian = "AM"; //else set meridian to "AM"
+        }
+        
+        if(hour >= 12) //if hour is greater then or equal to 12
+        {
+            hour -= 12; //subtract 12 to number.
+        }
+        
+        if(hour == 0) //if hour is equal to 0.
+        {
+            hour = 12; //hour is erqual to 12.
+        }
+        
+        //had to change hours.getValue to hour becuase we are using that local variable.
+        //ended up adding meridian becuase it will give us our string AM or PM.
+        displayString = hour + ":" + minutes.getDisplayValue() + meridian; 
     }
 }
