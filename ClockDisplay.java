@@ -44,11 +44,11 @@ public class ClockDisplay
      */
     
     //added boolean isAM to the parameter of the constructor.
-    public ClockDisplay(int hour, int minute, boolean isAM)
+    public ClockDisplay(int hour, int minute)
     {
         hours = new NumberDisplay(12); //Just like in the first constructor i changed the limit to 13 hours.
         minutes = new NumberDisplay(60);
-        changes = 1; //will display AM unless you put 12.
+        changes = 1; //should display AM unless you put 12 then it will switch to PM.
         setTime(hour, minute);
     }
 
@@ -96,13 +96,15 @@ public class ClockDisplay
      */
     private void updateDisplay()
     {
+        String hour = "12";
+        
         if (changes % 2 == 0)
         {
-           displayString = hours.getDisplayValue() + ":" + minutes.getDisplayValue() + " PM"; 
+           displayString = hours.getValue() + ":" + minutes.getDisplayValue() + " PM"; 
         }
         else if (changes % 2 != 0)
         {
-            displayString = hours.getDisplayValue() + ":" + minutes.getDisplayValue() + "AM";
+            displayString = hours.getValue() + ":" + minutes.getDisplayValue() + "AM";
         }
     }
 }
