@@ -23,7 +23,7 @@ public class ClockDisplay
     private NumberDisplay hours;
     private NumberDisplay minutes;
     private String displayString; // simulates the actual display
-    private boolean isMorning; //turned the meridian into a boolean.
+    private int changes; // changes between AM/PM.
     
     /**
      * Constructor for ClockDisplay objects. This constructor 
@@ -31,9 +31,9 @@ public class ClockDisplay
      */
     public ClockDisplay()
     {
-        hours = new NumberDisplay(13); //Since it's a 12 hour internal i changed the limit to 13 hours.
+        hours = new NumberDisplay(12); //Since it's a 12 hour internal i changed the limit to 13 hours.
         minutes = new NumberDisplay(60);
-        isMorning = true; //isMorning is set to true.
+        changes = 1; //will always display AM at first.
         updateDisplay();
     }
 
@@ -46,9 +46,9 @@ public class ClockDisplay
     //added boolean isAM to the parameter of the constructor.
     public ClockDisplay(int hour, int minute, boolean isAM)
     {
-        hours = new NumberDisplay(13); //Just like in the first constructor i changed the limit to 13 hours.
+        hours = new NumberDisplay(12); //Just like in the first constructor i changed the limit to 13 hours.
         minutes = new NumberDisplay(60);
-        isAM = true; //Set isAM to true.
+        changes = 1; //will display AM unless you put 12.
         setTime(hour, minute);
     }
 
@@ -57,11 +57,7 @@ public class ClockDisplay
      * the clock display go one minute forward.
      */
     public void timeTick()
-    {
-        boolean isAM = true;
-        String isMorning = "AM";
-        String isNight = "PM";
-        
+    {      
         minutes.increment();
         if(minutes.getValue() == 0) 
         {  // it just rolled over!
@@ -70,26 +66,8 @@ public class ClockDisplay
         
         if(hours.getValue() == 0)
         {
-            boolean isPM = false;
+            changes++; //incrementing changes to 2 then 3...
         }
-        
-        /**
-         * if(hours.getValue() == 0)
-         * {
-         *     meridian = "AM";
-         * }
-         * 
-         * if(meridian == "AM")
-         * {
-         *     meridian = "PM";    
-         * }
-         * 
-         * else
-         * {
-         *     meridian = "AM";
-         * }
-         * 
-         */
         
         updateDisplay();
     }
@@ -118,7 +96,13 @@ public class ClockDisplay
      */
     private void updateDisplay()
     {
-        //add String of "1" if hours.getDisplayValue() = 0
-        displayString = hours.getDisplayValue() + ":" + minutes.getDisplayValue();
+        if (changes % 2 == 0)
+        {
+           displayString = hours.getDisplayValue() + ":" + minutes.getDisplayValue() + " PM"; 
+        }
+        else if (changes % 2 != 0)
+        {
+            displayString = hours.getDisplayValue() + ":" + minutes.getDisplayValue() + "AM";
+        }
     }
 }
