@@ -22,7 +22,7 @@ public class ClockDisplay
 {
     private NumberDisplay hours;
     private NumberDisplay minutes;
-    private String displayString;    // simulates the actual display
+    private String displayString; // simulates the actual display
     private boolean isMorning; //turned the meridian into a boolean.
     
     /**
@@ -46,7 +46,7 @@ public class ClockDisplay
     //added boolean isAM to the parameter of the constructor.
     public ClockDisplay(int hour, int minute, boolean isAM)
     {
-        hours = new NumberDisplay(13); //Just like in the first constructor i chnaged the limit to 13 hours.
+        hours = new NumberDisplay(13); //Just like in the first constructor i changed the limit to 13 hours.
         minutes = new NumberDisplay(60);
         isAM = true; //Set isAM to true.
         setTime(hour, minute);
@@ -58,18 +58,39 @@ public class ClockDisplay
      */
     public void timeTick()
     {
+        boolean isAM = true;
+        String isMorning = "AM";
+        String isNight = "PM";
+        
         minutes.increment();
         if(minutes.getValue() == 0) 
         {  // it just rolled over!
             hours.increment();
         }
-        updateDisplay();
         
-        //If hours is equal to "00" add 1.
         if(hours.getValue() == 0)
         {
-            hours.increment();
+            boolean isPM = false;
         }
+        
+        /**
+         * if(hours.getValue() == 0)
+         * {
+         *     meridian = "AM";
+         * }
+         * 
+         * if(meridian == "AM")
+         * {
+         *     meridian = "PM";    
+         * }
+         * 
+         * else
+         * {
+         *     meridian = "AM";
+         * }
+         * 
+         */
+        
         updateDisplay();
     }
 
@@ -97,6 +118,7 @@ public class ClockDisplay
      */
     private void updateDisplay()
     {
+        //add String of "1" if hours.getDisplayValue() = 0
         displayString = hours.getDisplayValue() + ":" + minutes.getDisplayValue();
     }
 }
